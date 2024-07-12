@@ -28,7 +28,7 @@ It will then load the associated comments into memory, allowing you to access th
 
 eager_load:
 
-eager_load also loads associated records, but it does so using SQL joins to fetch all the data in a single query. 
+eager_load also loads associated records, but it does so using SQL joins to fetch all the data in a single query.
 It is suitable when you want to optimize database queries by fetching associated records in a single query.
 
 Example:
