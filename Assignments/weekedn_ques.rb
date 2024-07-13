@@ -105,44 +105,35 @@ module Weekend
     end
 
     def find_user_objects(user_list)
-      user_objects = []
-      user_list.each do |user|
-        @users.each { |u| user_objects << u if u[:first_name] == user }
-      end
-      return user_objects
+      @users.select { |u| user_list.include?(u[:first_name]) }
     end
 
     def get_buyer_fullname(buyer_name)
-      full_name = ''
-      @users.each { |user| full_name << (user[:first_name].capitalize + " " + user[:last_name].capitalize) if (user[:first_name] == buyer_name && user[:role] == 'buyer') }
-      return ( full_name.empty? ? "No buyer found with this name" : full_name )
+      user = @users.find { |user| user[:first_name] == buyer_name && user[:role] == 'buyer' }
+      return "No buyer found with this name" unless user
+
+      "#{user[:first_name].capitalize} #{user[:last_name].capitalize}"
     end
 
     def get_seller_fullname(seller_name)
-      full_name = ''
-      @users.each { |user| full_name << (user[:first_name].capitalize + " " + user[:last_name].capitalize) if (user[:first_name] == seller_name && user[:role] == 'seller') }
-      return ( full_name.empty? ? "No seller found with this name" : full_name )
+      user = @users.find { |user| user[:first_name] == seller_name && user[:role] == 'seller' }
+      return "No seller found with this name" unless user
+
+      "#{user[:first_name].capitalize} #{user[:last_name].capitalize}"
     end
 
     def find_buyers_only(user_list)
-      buyers = []
-      user_list.each do |user|
-        @users.each { |u| buyers << u if (u[:first_name] == user && u[:role] == 'buyer') }
-      end
-      buyers.uniq!
+      buyers = @users.select { |user| user_list.include?(user[:first_name]) && user[:role] == 'buyer' }
+      buyers.uniq
     end
 
     def find_sellers_only(user_list)
-      sellers = []
-      user_list.each do |user|
-        @users.each { |u| sellers << u if (u[:first_name] == user && u[:role] == 'seller') }
-      end
-      sellers.uniq!
+      sellers = @users.select { |user| user_list.include?(user[:first_name]) && user[:role] == 'seller'}
+      sellers.uniq
     end
 
     def find_user(user_name)
-      all_users = []
-      @users.each { |user| all_users << user if (user[:first_name] == user_name) }
+      all_users = @users.select { |user| user_name == user[:first_name] }
       all_users
     end
 
@@ -263,3 +254,7 @@ puts user.find_user('alex')
 
 puts user.find_age({:first_name => 'alex', :last_name => 'newman',  :date_of_birth => '01-05-1982',  :address => 'sapna sangeeta', :role => 'buyer'})
 puts user.find_age({:first_name => 'Meena', :last_name => 'Pallanipppan',  :date_of_birth => '03-02-1988',  :address => 'sapna sangeeta', :role => 'seller'})
+
+
+puts "---------------------------------------------------------------------------------------------------------------------------------------"
+puts user.users
