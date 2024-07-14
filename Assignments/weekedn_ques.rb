@@ -184,8 +184,8 @@ end
 
 prod = Weekend::Product.new
 user = Weekend::User.new
-# p prod1.products
-# p user.users
+puts prod.products
+puts user.users
 
 
 # Scenario: Take the list of all the users and return array of user objects correspond to the list.
