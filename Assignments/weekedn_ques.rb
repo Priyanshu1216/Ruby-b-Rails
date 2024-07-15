@@ -245,6 +245,7 @@ puts user.find_user('alex')
 
 
 
+
 # Scenario: Write method to find the age of buyer/seller on the basis of his date_of_birth
 # Parameter: A buyer/seller record for ex: {:first_name => 'Sundar', :last_name => 'Pichai',  :date_of_birth => '11-05-1983',  :address => 'vijay nagar', :role => 'buyer'}
 # Output: Return age of user after calculating from date_of_birth
