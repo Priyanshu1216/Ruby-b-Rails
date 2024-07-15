@@ -91,7 +91,6 @@ require 'date'
 
 
 
-
 module Weekend
   class User
     attr_accessor :users
