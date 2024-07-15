@@ -90,7 +90,6 @@ require 'date'
 # Output: return array of all the user objects whose first name is alex
 
 
-
 module Weekend
   class User
     attr_accessor :users
